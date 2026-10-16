@@ -1,0 +1,41 @@
+{
+ "test_accuracy": 0.9711,
+ "test_images": 3876,
+ "test_accuracy_exact_leaf_ids": 0.973,
+ "classes": 17,
+ "train_images": 16998,
+ "leaves": 3920,
+ "split": "by leaf (70/15/15); exact leaf IDs for 62% of photos, photo-number blocks for the rest",
+ "hardest": {
+  "Tomato Late blight": 0.817,
+  "Maize Northern leaf blight": 0.863,
+  "Tomato Early blight": 0.899
+ },
+ "history": [
+  {
+   "stage": 1,
+   "train_acc": 0.8356865513589834,
+   "val_acc": 0.8896656534954407
+  },
+  {
+   "stage": 1,
+   "train_acc": 0.9018119778797505,
+   "val_acc": 0.8963525835866262
+  },
+  {
+   "stage": 2,
+   "train_acc": 0.953759265795976,
+   "val_acc": 0.9525835866261398
+  },
+  {
+   "stage": 2,
+   "train_acc": 0.9745264148723379,
+   "val_acc": 0.9717325227963526
+  },
+  {
+   "stage": 2,
+   "train_acc": 0.9829391693140369,
+   "val_acc": 0.9653495440729484
+  }
+ ]
+}

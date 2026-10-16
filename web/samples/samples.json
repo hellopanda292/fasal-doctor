@@ -1,0 +1,50 @@
+[
+ {
+  "file": "potato-late-blight.jpg",
+  "label": "आलू पछेती",
+  "crop": "Potato",
+  "truth": "Potato___Late_blight"
+ },
+ {
+  "file": "potato-early-blight.jpg",
+  "label": "आलू अगेती",
+  "crop": "Potato",
+  "truth": "Potato___Early_blight"
+ },
+ {
+  "file": "tomato-yellow-leaf-curl-virus.jpg",
+  "label": "टमाटर वायरस",
+  "crop": "Tomato",
+  "truth": "Tomato___Tomato_Yellow_Leaf_Curl_Virus"
+ },
+ {
+  "file": "tomato-bacterial-spot.jpg",
+  "label": "टमाटर धब्बा",
+  "crop": "Tomato",
+  "truth": "Tomato___Bacterial_spot"
+ },
+ {
+  "file": "maize-common-rust.jpg",
+  "label": "मक्का रतुआ",
+  "crop": "Maize",
+  "truth": "Corn_(maize)___Common_rust_"
+ },
+ {
+  "file": "maize-northern-leaf-blight.jpg",
+  "label": "मक्का झुलसा",
+  "crop": "Maize",
+  "truth": "Corn_(maize)___Northern_Leaf_Blight"
+ },
+ {
+  "file": "tomato-septoria-leaf-spot.jpg",
+  "label": "टमाटर सेप्टोरिया",
+  "crop": "Tomato",
+  "truth": "Tomato___Septoria_leaf_spot"
+ },
+ {
+  "file": "tomato-healthy.jpg",
+  "label": "टमाटर स्वस्थ",
+  "crop": "Tomato",
+  "truth": "Tomato___healthy"
+ }
+]

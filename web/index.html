@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>फसल डॉक्टर · Fasal Doctor · KhetGo</title>
+  <meta name="description" content="Fasal Doctor: take a photo of a potato, tomato or maize leaf and an AI model (MobileNetV3) tells you which of 17 diseases or healthy it looks like. Runs fully on your phone; the photo is never uploaded." />
+  <meta name="theme-color" content="#0f8a45" />
+  <link rel="icon" href="../img/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --green: #0f8a45; --green-dark: #0b5e31; --orange: #e05a0c; --red: #c2361b; --ink: #12261b; --soft: #3d5245; --muted: #5d7064; --line: #dfe8de; --card: rgba(255,255,255,.88); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Mukta", "Segoe UI", system-ui, sans-serif; color: var(--ink); background: radial-gradient(45% 40% at 0% 0%, rgba(15,138,69,.12), transparent 70%), radial-gradient(40% 35% at 100% 0%, rgba(224,90,12,.10), transparent 70%), linear-gradient(180deg, #fbfaf4, #f2f7ef); background-attachment: fixed; line-height: 1.55; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    a { color: inherit; }
+    button { font: inherit; color: inherit; }
+    :focus-visible { outline: 2.5px solid var(--orange); outline-offset: 3px; }
+    .wrap { width: min(1100px, 100% - 32px); margin-inline: auto; }
+    .display { font-family: "Baloo 2", "Mukta", sans-serif; letter-spacing: -0.01em; }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: "Baloo 2", sans-serif; font-weight: 800; font-size: 24px; color: var(--green); }
+    .brand img { width: 38px; height: 38px; border-radius: 11px; }
+    .brand span { color: var(--orange); }
+    .back { font-weight: 700; font-size: 14px; text-decoration: none; padding: 8px 14px; border-radius: 99px; background: #fff; border: 1px solid var(--line); white-space: nowrap; }
+    .back:hover { border-color: var(--green); }
+
+    .intro { padding: 10px 0 22px; max-width: 760px; }
+    .eyebrow { font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+    h1 { margin-top: 8px; font-size: clamp(2.3rem, 6vw, 3.6rem); line-height: 1.04; font-weight: 800; }
+    h1 em { font-style: normal; color: var(--green); }
+    .lead { margin-top: 10px; font-size: 18px; color: var(--soft); }
+    .lead-en { margin-top: 6px; font-size: 15px; color: var(--muted); }
+
+    .app { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
+    @media (min-width: 900px) { .app { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); } }
+    .card { background: var(--card); border: 1px solid #fff; border-radius: 22px; padding: 20px; box-shadow: 0 20px 44px -30px rgba(18,38,27,.4); }
+    .step { font-family: "Baloo 2", sans-serif; font-weight: 700; font-size: 19px; line-height: 1.2; }
+    .step small { display: block; font-family: "Mukta", sans-serif; font-weight: 500; font-size: 13.5px; color: var(--muted); }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .chip { cursor: pointer; border: 1.5px solid var(--line); background: #fff; border-radius: 99px; padding: 7px 14px; font-weight: 700; font-size: 15px; }
+    .chip[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: #fff; }
+
+    .drop { margin-top: 16px; border: 2px dashed #b9cfba; border-radius: 18px; background: #fbfdf9; display: grid; place-items: center; text-align: center; aspect-ratio: 1 / 1; max-height: 420px; width: 100%; overflow: hidden; position: relative; transition: border-color .2s, background .2s; }
+    .drop.over { border-color: var(--green); background: #eef7ee; }
+    .drop img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .drop .empty { padding: 20px; color: var(--muted); }
+    .drop .empty b { display: block; font-size: 44px; line-height: 1; }
+    .square { position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 0 3px rgba(255,255,255,.75); border-radius: 16px; }
+
+    .buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+    .btn { cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; font-size: 16px; padding: 12px 14px; border-radius: 14px; border: 0; text-align: center; }
+    .btn.primary { background: var(--green); color: #fff; }
+    .btn.primary:hover { background: var(--green-dark); }
+    .btn.secondary { background: #fff; border: 1.5px solid var(--line); }
+    .btn.secondary:hover { border-color: var(--green); }
+    .tips { margin-top: 12px; font-size: 14px; color: var(--muted); }
+
+    .samples { margin-top: 16px; }
+    .samples p { font-weight: 700; font-size: 14px; }
+    .sample-row { display: flex; gap: 8px; margin-top: 8px; overflow-x: auto; padding-bottom: 4px; }
+    .sample { cursor: pointer; flex: none; width: 74px; border: 1.5px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; padding: 0; }
+    .sample img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+    .sample span { display: block; font-size: 11.5px; padding: 3px 2px; font-weight: 600; color: var(--soft); }
+    .sample:hover { border-color: var(--green); }
+
+    .status { display: flex; align-items: center; gap: 10px; color: var(--muted); font-weight: 600; }
+    .bar-track { height: 8px; border-radius: 99px; background: #e7eee5; overflow: hidden; flex: 1; }
+    .bar-fill { height: 100%; width: 0; background: var(--green); border-radius: 99px; transition: width .2s; }
+
+    .result-head { display: flex; align-items: flex-start; gap: 14px; }
+    .badge { flex: none; width: 54px; height: 54px; border-radius: 16px; display: grid; place-items: center; font-size: 28px; background: #eef7ee; }
+    .badge.sick { background: #fdeee4; }
+    .result-crop { font-size: 14px; font-weight: 700; color: var(--muted); }
+    .result-name { font-family: "Baloo 2", sans-serif; font-size: clamp(1.6rem, 4vw, 2.1rem); font-weight: 800; line-height: 1.1; }
+    .result-en { font-size: 14.5px; color: var(--muted); }
+    .confidence { margin-top: 4px; font-weight: 700; }
+    .warn { margin-top: 14px; border-radius: 14px; padding: 12px 14px; background: #fff7df; border: 1px solid #f0e2a6; font-weight: 600; }
+    .urgent { margin-top: 14px; border-radius: 14px; padding: 12px 14px; background: #fdebe6; border: 1px solid #f3c3b5; color: #7c2312; font-weight: 700; }
+
+    .top3 { margin-top: 16px; list-style: none; display: grid; gap: 8px; }
+    .top3 li { display: grid; grid-template-columns: minmax(0, 1fr) 54px; gap: 4px 10px; align-items: center; font-size: 15px; }
+    .top3 .t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+    .top3 .p { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .top3 .bar-track { grid-column: 1 / -1; height: 7px; }
+    .top3 li:first-child .bar-fill { background: var(--orange); }
+
+    .advice { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .advice h3 { font-family: "Baloo 2", sans-serif; font-size: 18px; }
+    .advice p, .advice li { color: var(--soft); }
+    .advice ul { margin: 6px 0 0 20px; }
+    .advice li { margin-top: 4px; }
+    .help { margin-top: 14px; border-radius: 14px; padding: 12px 14px; background: #eef7ee; font-size: 15px; }
+    .help a { font-weight: 700; color: var(--green-dark); }
+
+    .placeholder { text-align: center; color: var(--muted); padding: 36px 10px; }
+    .placeholder b { display: block; font-size: 46px; }
+
+    section { margin-top: 48px; }
+    h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); line-height: 1.12; font-weight: 800; }
+    .sub { margin-top: 6px; color: var(--soft); max-width: 720px; }
+    .grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; margin-top: 18px; }
+    @media (min-width: 760px) { .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .grid .card h3 { font-family: "Baloo 2", sans-serif; font-size: 19px; line-height: 1.2; }
+    .grid .card p, .grid .card li { color: var(--soft); font-size: 15px; }
+    .grid .card ul { margin: 6px 0 0 18px; }
+    .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .stat { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 12px 16px; }
+    .stat strong { display: block; font-family: "Baloo 2", sans-serif; font-size: 28px; line-height: 1; color: var(--green); }
+    .stat span { font-size: 13.5px; color: var(--muted); }
+    .diseases { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .diseases span { background: #fff; border: 1px solid var(--line); border-radius: 99px; padding: 3px 10px; font-size: 13.5px; font-weight: 600; }
+
+    footer { margin-top: 56px; padding: 24px 0 36px; border-top: 1px solid var(--line); color: var(--soft); font-size: 14.5px; }
+    footer .small { margin-top: 6px; font-size: 13px; color: var(--muted); max-width: 860px; }
+    [hidden] { display: none !important; }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="../" aria-label="KhetGo home"><img src="../img/logo.png" alt="" /><b>Khet<span>Go</span></b></a>
+      <a class="back" href="../">← KhetGo ऐप</a>
+    </header>
+
+    <main>
+      <div class="intro">
+        <p class="eyebrow">KhetGo · AI tool · आलू, टमाटर, मक्का</p>
+        <h1 class="display">फसल <em>डॉक्टर</em></h1>
+        <p class="lead">पत्ती की फोटो लें, और AI बताएगा कि उसमें कौन-सा रोग हो सकता है, साथ में क्या करें।</p>
+        <p class="lead-en">Photograph a potato, tomato or maize leaf. A neural network recognises 17 diseases (or healthy) right on your phone. The photo is never uploaded.</p>
+      </div>
+
+      <div class="app">
+        <div class="card">
+          <p class="step">1. फसल चुनें <small>Choose the crop (helps the model)</small></p>
+          <div class="chips" role="group" aria-label="फसल">
+            <button class="chip" type="button" data-crop="" aria-pressed="true">सभी</button>
+            <button class="chip" type="button" data-crop="Potato" aria-pressed="false">🥔 आलू</button>
+            <button class="chip" type="button" data-crop="Tomato" aria-pressed="false">🍅 टमाटर</button>
+            <button class="chip" type="button" data-crop="Maize" aria-pressed="false">🌽 मक्का</button>
+          </div>
+
+          <p class="step" style="margin-top:18px">2. पत्ती की फोटो <small>Photo of one leaf</small></p>
+          <div class="drop" id="drop">
+            <div class="empty" id="empty"><b aria-hidden="true">🍃</b>एक पत्ती की साफ़ फोटो यहाँ आएगी<br /><small>Drag a photo here, or use the buttons</small></div>
+            <img id="preview" alt="चुनी गई पत्ती की फोटो" hidden />
+            <span class="square" aria-hidden="true"></span>
+          </div>
+          <div class="buttons">
+            <label class="btn primary">📷 फोटो खींचें<input id="camera" class="sr" type="file" accept="image/*" capture="environment" /></label>
+            <label class="btn secondary">🖼️ गैलरी से<input id="gallery" class="sr" type="file" accept="image/*" /></label>
+          </div>
+          <p class="tips">सबसे अच्छा नतीजा: एक ही पत्ती, दिन की रोशनी, पत्ती फ्रेम में भरी हुई, सादा पीछे का हिस्सा।</p>
+
+          <div class="samples">
+            <p>फोटो नहीं है? ये आज़माएँ <span style="font-weight:500;color:var(--muted)">(test leaves the model never saw)</span></p>
+            <div class="sample-row" id="samples"></div>
+          </div>
+        </div>
+
+        <div class="card" aria-live="polite">
+          <div id="loading" class="status">
+            <span>AI मॉडल लोड हो रहा है…</span>
+            <span class="bar-track" aria-hidden="true"><span class="bar-fill" id="load-bar"></span></span>
+            <span id="load-pct">0%</span>
+          </div>
+          <div id="placeholder" class="placeholder" hidden><b aria-hidden="true">🩺</b>फोटो चुनें, नतीजा यहाँ दिखेगा।<br /><small>Choose a photo to see the result.</small></div>
+          <div id="result" hidden>
+            <div class="result-head">
+              <div class="badge" id="r-badge" aria-hidden="true">🌿</div>
+              <div>
+                <p class="result-crop" id="r-crop"></p>
+                <p class="result-name" id="r-name"></p>
+                <p class="result-en" id="r-en"></p>
+                <p class="confidence" id="r-conf"></p>
+              </div>
+            </div>
+            <p class="warn" id="r-unsure" hidden>⚠️ मॉडल पक्का नहीं है। एक ही पत्ती की, अच्छी रोशनी में, पास से साफ़ फोटो लेकर दोबारा जाँचें। यह मॉडल सिर्फ़ आलू, टमाटर और मक्का की पत्तियाँ पहचानता है।</p>
+            <p class="urgent" id="r-urgent" hidden></p>
+            <p class="step" style="margin-top:16px;font-size:16px">सबसे संभावित 3 <small>Top 3 guesses</small></p>
+            <ol class="top3" id="r-top3"></ol>
+            <div class="advice">
+              <h3>लक्षण</h3>
+              <p id="r-signs"></p>
+              <h3 style="margin-top:12px">क्या करें</h3>
+              <ul id="r-steps"></ul>
+            </div>
+            <p class="help">दवा और मात्रा के लिए अपने नज़दीकी <b>कृषि विज्ञान केंद्र (KVK)</b> या कृषि अधिकारी से सलाह लें। किसान कॉल सेंटर (मुफ़्त): <a href="tel:18001801551">1800-180-1551</a></p>
+          </div>
+          <p id="error" class="warn" hidden></p>
+        </div>
+      </div>
+
+      <section aria-labelledby="how">
+        <h2 id="how" class="display">How it works</h2>
+        <p class="sub">Transfer learning on a laptop CPU, tested honestly on leaves the model never saw, and run entirely in the browser.</p>
+        <div class="stats" id="stats"></div>
+        <div class="grid three">
+          <div class="card">
+            <h3>1. Training</h3>
+            <p>MobileNetV3-Large, pretrained on ImageNet, fine-tuned in PyTorch on about 24,000 PlantVillage photos of potato, tomato and maize leaves, with random crops, flips, rotations and colour changes so it copes with phone photos.</p>
+          </div>
+          <div class="card">
+            <h3>2. Honest testing</h3>
+            <p>PlantVillage has about four photos of each physical leaf. A random split would put the same leaf in training and test and inflate the score, so the split is <b>by leaf</b>: every test photo shows a leaf the model never saw.</p>
+          </div>
+          <div class="card">
+            <h3>3. On your phone</h3>
+            <p>The model is exported to ONNX and runs with ONNX Runtime Web (WebAssembly). Your photo stays on your device. Choosing the crop restricts the answer to that crop’s diseases.</p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="limits">
+        <h2 id="limits" class="display">What it can and can’t do</h2>
+        <div class="grid three">
+          <div class="card">
+            <h3>Recognises 17 classes</h3>
+            <div class="diseases" id="classes"></div>
+          </div>
+          <div class="card">
+            <h3>Lab photos vs. the field</h3>
+            <p>PlantVillage photos are single leaves on a plain background. Research shows models trained on them are much less accurate on cluttered field photos, so treat the answer as a first hint, and photograph one leaf against a plain background.</p>
+          </div>
+          <div class="card">
+            <h3>Not a replacement for an expert</h3>
+            <ul>
+              <li>Only potato, tomato and maize; any other photo still gets one of these answers.</li>
+              <li>Advice is general and non-chemical. Medicines and doses: KVK or agriculture officer.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Built by <a href="https://priyanshu-zihowa.vercel.app"><strong>Priyanshu Zihowa</strong></a> · part of <a href="../">KhetGo</a> · Built with Claude Code</p>
+      <p class="small">Training data: PlantVillage dataset (Hughes &amp; Salathé, 2015, arXiv:1511.08060), licensed CC BY-SA 3.0. The trained model and sample leaf photos on this page are shared under the same licence. Fonts: Baloo 2 and Mukta (SIL Open Font License). Runs with ONNX Runtime Web (MIT).</p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/ort.min.js"></script>
+  <script src="advice.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

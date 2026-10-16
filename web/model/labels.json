@@ -1,0 +1,138 @@
+[
+ {
+  "folder": "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot",
+  "crop_hi": "मक्का",
+  "disease_hi": "ग्रे लीफ स्पॉट",
+  "crop": "Maize",
+  "disease": "Gray leaf spot",
+  "healthy": false
+ },
+ {
+  "folder": "Corn_(maize)___Common_rust_",
+  "crop_hi": "मक्का",
+  "disease_hi": "रतुआ (कॉमन रस्ट)",
+  "crop": "Maize",
+  "disease": "Common rust",
+  "healthy": false
+ },
+ {
+  "folder": "Corn_(maize)___Northern_Leaf_Blight",
+  "crop_hi": "मक्का",
+  "disease_hi": "उत्तरी पत्ती झुलसा",
+  "crop": "Maize",
+  "disease": "Northern leaf blight",
+  "healthy": false
+ },
+ {
+  "folder": "Corn_(maize)___healthy",
+  "crop_hi": "मक्का",
+  "disease_hi": "स्वस्थ",
+  "crop": "Maize",
+  "disease": "Healthy",
+  "healthy": true
+ },
+ {
+  "folder": "Potato___Early_blight",
+  "crop_hi": "आलू",
+  "disease_hi": "अगेती झुलसा",
+  "crop": "Potato",
+  "disease": "Early blight",
+  "healthy": false
+ },
+ {
+  "folder": "Potato___Late_blight",
+  "crop_hi": "आलू",
+  "disease_hi": "पछेती झुलसा",
+  "crop": "Potato",
+  "disease": "Late blight",
+  "healthy": false
+ },
+ {
+  "folder": "Potato___healthy",
+  "crop_hi": "आलू",
+  "disease_hi": "स्वस्थ",
+  "crop": "Potato",
+  "disease": "Healthy",
+  "healthy": true
+ },
+ {
+  "folder": "Tomato___Bacterial_spot",
+  "crop_hi": "टमाटर",
+  "disease_hi": "बैक्टीरियल धब्बा",
+  "crop": "Tomato",
+  "disease": "Bacterial spot",
+  "healthy": false
+ },
+ {
+  "folder": "Tomato___Early_blight",
+  "crop_hi": "टमाटर",
+  "disease_hi": "अगेती झुलसा",
+  "crop": "Tomato",
+  "disease": "Early blight",
+  "healthy": false
+ },
+ {
+  "folder": "Tomato___Late_blight",
+  "crop_hi": "टमाटर",
+  "disease_hi": "पछेती झुलसा",
+  "crop": "Tomato",
+  "disease": "Late blight",
+  "healthy": false
+ },
+ {
+  "folder": "Tomato___Leaf_Mold",
+  "crop_hi": "टमाटर",
+  "disease_hi": "पत्ती फफूंद",
+  "crop": "Tomato",
+  "disease": "Leaf mould",
+  "healthy": false
+ },
+ {
+  "folder": "Tomato___Septoria_leaf_spot",
+  "crop_hi": "टमाटर",
+  "disease_hi": "सेप्टोरिया पत्ती धब्बा",
+  "crop": "Tomato",
+  "disease": "Septoria leaf spot",
+  "healthy": false
+ },
+ {
+  "folder": "Tomato___Spider_mites Two-spotted_spider_mite",
+  "crop_hi": "टमाटर",
+  "disease_hi": "लाल मकड़ी (माइट)",
+  "crop": "Tomato",
+  "disease": "Spider mites",
+  "healthy": false
+ },
+ {
+  "folder": "Tomato___Target_Spot",
+  "crop_hi": "टमाटर",
+  "disease_hi": "टारगेट स्पॉट",
+  "crop": "Tomato",
+  "disease": "Target spot",
+  "healthy": false
+ },
+ {
+  "folder": "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+  "crop_hi": "टमाटर",
+  "disease_hi": "पत्ती मरोड़ (पीला) वायरस",
+  "crop": "Tomato",
+  "disease": "Yellow leaf curl virus",
+  "healthy": false
+ },
+ {
+  "folder": "Tomato___Tomato_mosaic_virus",
+  "crop_hi": "टमाटर",
+  "disease_hi": "मोज़ेक वायरस",
+  "crop": "Tomato",
+  "disease": "Mosaic virus",
+  "healthy": false
+ },
+ {
+  "folder": "Tomato___healthy",
+  "crop_hi": "टमाटर",
+  "disease_hi": "स्वस्थ",
+  "crop": "Tomato",
+  "disease": "Healthy",
+  "healthy": true
+ }
+]
